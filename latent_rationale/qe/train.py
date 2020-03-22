@@ -59,7 +59,7 @@ def train():
 
     example = dev_data[0]
     print("First train example tokens:", example.tokens)
-    print("First train example scores:", example.scores)
+    print("First train example scores:", example.score)
 
     print("Loading pre-trained word embeddings")
     vocab = Vocabulary()
