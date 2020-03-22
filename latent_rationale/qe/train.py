@@ -14,7 +14,7 @@ from latent_rationale.beer.constants import PAD_TOKEN
 from latent_rationale.beer.models.model_helpers import build_model
 from latent_rationale.beer.vocabulary import Vocabulary
 from latent_rationale.beer.util import get_args, get_minibatch, print_parameters, load_embeddings, initialize_model_
-from latent_rationale.beer.evaluate import evaluate_rationale, get_examples, evaluate_loss
+from latent_rationale.qe.evaluate import get_examples, evaluate_loss
 from latent_rationale.common.util import make_kv_string
 from latent_rationale.qe.data import qe_reader
 from latent_rationale.qe.util import prepare_minibatch
