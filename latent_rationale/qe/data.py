@@ -10,7 +10,11 @@ def qe_reader(path, max_len=0):
     :param path:
     :return: QualityExample
     """
+    skip = True
     for line in open(path):
+        if skip is True:
+            skip = False
+            continue
         parts = line.split('\t')
         score = float(parts[6])
         tokens = parts[2].split()
