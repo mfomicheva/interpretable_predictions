@@ -1,7 +1,15 @@
 from collections import namedtuple
 
+from sacremoses import MosesTokenizer
+
 
 QualityExample = namedtuple("QualityExample", ["tokens", "score"])
+
+tokenizer = MosesTokenizer()
+
+
+def preprocess(line):
+    return tokenizer.tokenize(line.strip().lower())
 
 
 def qe_reader(path, max_len=0):
@@ -17,7 +25,7 @@ def qe_reader(path, max_len=0):
             continue
         parts = line.split('\t')
         score = float(parts[6])
-        tokens = parts[2].split()
+        tokens = preprocess(parts[2])
         if max_len > 0:
             tokens = tokens[:max_len]
         yield QualityExample(tokens=tokens, score=score)
