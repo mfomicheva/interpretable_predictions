@@ -290,6 +290,7 @@ def get_args():
 
     parser.add_argument('--print_every', type=int, default=50)
     parser.add_argument('--eval_every', type=int, default=-1)
+    parser.add_argument('--num_examples', type=int, default=3, help="Number of examples to print during training")
 
     # optimization
     parser.add_argument('--weight_decay', type=float, default=2e-6)

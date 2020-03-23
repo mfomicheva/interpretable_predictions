@@ -39,6 +39,7 @@ def train():
     eval_every = cfg["eval_every"]
     batch_size = cfg["batch_size"]
     eval_batch_size = cfg.get("eval_batch_size", batch_size)
+    num_examples = cfg.get("num_examples", 3)
 
     # Let's load the data into memory.
     print("Loading data")
@@ -187,7 +188,7 @@ def train():
                 print("Evaluation starts - %s" % str(datetime.datetime.now()))
 
                 # print a few examples
-                examples = get_examples(model, dev_data, num_examples=3,
+                examples = get_examples(model, dev_data, num_examples=num_examples,
                                         device=device)
                 for i, example in enumerate(examples, 1):
                     print("Example %d:" % i, " ".join(example))
