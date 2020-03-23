@@ -14,6 +14,7 @@ from latent_rationale.beer.constants import PAD_TOKEN
 from latent_rationale.beer.models.model_helpers import build_model
 from latent_rationale.beer.vocabulary import Vocabulary
 from latent_rationale.beer.util import get_args, get_minibatch, print_parameters, load_embeddings, initialize_model_
+from latent_rationale.sst.util import load_glove
 from latent_rationale.qe.evaluate import get_examples, evaluate_loss
 from latent_rationale.common.util import make_kv_string
 from latent_rationale.qe.data import qe_reader
@@ -64,7 +65,7 @@ def train():
 
     print("Loading pre-trained word embeddings")
     vocab = Vocabulary()
-    vectors = load_embeddings(cfg["embeddings"], vocab)
+    vectors = load_glove(cfg["embeddings"], vocab)
 
     # build model
     model = build_model(cfg["model"], vocab, cfg=cfg)
@@ -282,3 +283,8 @@ def train():
 
 if __name__ == "__main__":
     train()
+
+
+# TODO: tokenize input
+# TODO: use glove embeddings
+# TODO: apply min-max to z-scores
