@@ -12,19 +12,37 @@ def preprocess(line):
     return tokenizer.tokenize(line.strip().lower())
 
 
-def qe_reader(path, max_len=0):
-    """
-    Reads in QE WMT2020 data
-    :param path:
-    :return: QualityExample
-    """
+def min_max(score, min_scores, max_scores):
+    return (score - min_scores) / (max_scores - min_scores)
+
+
+def read_scores(path):
     skip = True
+    scores = []
     for line in open(path):
         if skip is True:
             skip = False
             continue
         parts = line.split('\t')
         score = float(parts[6])
+        scores.append(score)
+    return min(scores), max(scores)
+
+
+def qe_reader(path, max_len=0):
+    """
+    Reads in QE WMT2020 data
+    :param path:
+    :return: QualityExample
+    """
+    min_scores, max_scores = read_scores(path)
+    skip = True
+    for line in open(path):
+        if skip is True:
+            skip = False
+            continue
+        parts = line.split('\t')
+        score = min_max(float(parts[6]), min_scores, max_scores)
         tokens = preprocess(parts[2])
         if max_len > 0:
             tokens = tokens[:max_len]

@@ -283,8 +283,3 @@ def train():
 
 if __name__ == "__main__":
     train()
-
-
-# TODO: tokenize input
-# TODO: use glove embeddings
-# TODO: apply min-max to z-scores
