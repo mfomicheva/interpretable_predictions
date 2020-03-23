@@ -93,7 +93,6 @@ def predict():
             tokens = ex.tokens
             # z is [batch_size, time]
             if z is not None:
-
                 z_ex = z[mb_i, :len(tokens)]  # i for minibatch example
                 z_ex_nonzero = (z_ex > 0).float()
                 z_ex_nonzero_sum = z_ex_nonzero.sum().item()
@@ -108,6 +107,7 @@ def predict():
                 sys.stdout.write("\n")
                 sys.stdout.write(" ".join(["%.4f" % zi for zi in z_ex]))
                 sys.stdout.write("\n")
+                sys.stdout.write("{}\n".format(logits[mb_i][0]))
 
 
 
