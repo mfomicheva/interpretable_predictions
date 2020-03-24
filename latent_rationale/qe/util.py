@@ -2,6 +2,51 @@ import numpy as np
 import torch
 
 from latent_rationale.beer.util import pad
+from latent_rationale.beer.util import initialize_model_ as beer_initialize_model_
+from latent_rationale.beer.util import decorate_token as beer_decorate_token
+from latent_rationale.beer.util import get_minibatch as beer_get_minibatch
+from latent_rationale.beer.util import print_parameters as beer_print_parameters
+from latent_rationale.beer.util import get_predict_args as beer_get_predict_args
+from latent_rationale.beer.util import get_device as beer_get_device
+from latent_rationale.beer.util import find_ckpt_in_directory as beer_find_ckpt_in_directory
+from latent_rationale.beer.util import get_args as beer_get_args
+from latent_rationale.sst.util import load_glove as sst_load_glove
+
+
+def get_args():
+    return beer_get_args()
+
+
+def print_parameters(model):
+    return beer_print_parameters(model)
+
+
+def initialize_model_(model):
+    return beer_initialize_model_(mode)
+
+
+def get_predict_args():
+    return beer_get_predict_args()
+
+
+def load_glove(glove_path, vocab, glove_dim=300):
+    return sst_load_glove(glove_path, vocab, glove_dim=glove_dim)
+
+
+def get_device():
+    return beer_get_device()
+
+
+def find_ckpt_in_directory(path):
+    beer_find_ckpt_in_directory(path)
+
+
+def decorate_token(t, z_):
+    return beer_decorate_token(t, z_)
+
+
+def get_minibatch(data, batch_size=256, shuffle=False):
+    return beer_get_minibatch(data, batch_size=batch_size, shuffle=shuffle)
 
 
 def prepare_minibatch(mb, vocab, device=None, sort=True):

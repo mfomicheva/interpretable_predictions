@@ -4,15 +4,12 @@ import torch.optim
 
 from latent_rationale.qe.data import qe_reader
 from latent_rationale.qe.util import prepare_minibatch
-from latent_rationale.sst.util import load_glove
+from latent_rationale.qe.util import load_glove
 
-from latent_rationale.beer.vocabulary import Vocabulary
-from latent_rationale.beer.models.model_helpers import build_model
-from latent_rationale.beer.util import get_minibatch, decorate_token, \
-    print_parameters, get_predict_args, get_device, find_ckpt_in_directory, \
-    beer_annotations_reader, beer_reader, load_embeddings
-from latent_rationale.beer.evaluate import evaluate_loss, evaluate_rationale
-from latent_rationale.common.util import make_kv_string
+from latent_rationale.qe.vocabulary import Vocabulary
+from latent_rationale.qe.models.model_helpers import build_model
+from latent_rationale.qe.util import get_minibatch, decorate_token, print_parameters, get_predict_args, get_device, \
+    find_ckpt_in_directory
 
 
 def predict():

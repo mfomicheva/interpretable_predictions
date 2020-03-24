@@ -3,7 +3,8 @@ import torch
 
 from collections import defaultdict
 
-from latent_rationale.beer.util import get_minibatch, decorate_token
+from latent_rationale.qe.util import get_minibatch
+from latent_rationale.qe.util import decorate_token
 from latent_rationale.qe.util import prepare_minibatch
 
 
