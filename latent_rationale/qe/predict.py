@@ -60,7 +60,7 @@ def predict():
             mb, model.vocab, device=device, sort=True)
 
         with torch.no_grad():
-            logits = model(x)
+            predictions = model.forward(x)
 
             # attention alphas
             if hasattr(model, "alphas"):
@@ -82,8 +82,6 @@ def predict():
         # reverse sort
         alphas = alphas[reverse_map] if alphas is not None else None
         z = z[reverse_map] if z is not None else None  # [B,T]
-        logits = logits[reverse_map]
-        print(logits.shape)
 
         # evaluate each sentence in this minibatch
         for mb_i, ex in enumerate(mb):
@@ -104,7 +102,7 @@ def predict():
                 sys.stdout.write("\n")
                 sys.stdout.write(" ".join(["%.4f" % zi for zi in z_ex]))
                 sys.stdout.write("\n")
-                sys.stdout.write("{}\n".format(logits[mb_i][0]))
+                sys.stdout.write("{}\n".format(predictions[mb_i][0]))
 
 
 
