@@ -269,6 +269,7 @@ def train():
 
                 for name, eval_result in zip(("dev",),
                                              (dev_eval)):
+                    print(eval_result)
                     for k, v in eval_result.items():
                         cfg[name + '_' + k] = v
 
