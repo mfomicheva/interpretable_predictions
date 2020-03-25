@@ -32,12 +32,16 @@ def read_scores(path):
         parts = line.split('\t')
         score = float(parts[SCORE_IDX])
         scores.append(score)
+    print_target_distribution()
+    return min(scores), max(scores)
+
+
+def print_target_distribution(scores):
     print(np.min(scores))
     print(np.max(scores))
     print(np.mean(scores))
     print(np.median(scores))
     print(np.std(scores))
-    return min(scores), max(scores)
 
 
 def qe_reader(path, max_len=0, simulated=False):
