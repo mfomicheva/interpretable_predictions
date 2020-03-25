@@ -34,7 +34,7 @@ def predict():
     eval_batch_size = 64
 
     print("Loading data")
-    dev_data = list(qe_reader(cfg["dev_path"], simulated=predict_cfg.get("simulate", False)))
+    dev_data = list(qe_reader(cfg["dev_path"], simulated=predict_cfg.simulate))
 
     print("dev", len(dev_data))
 
