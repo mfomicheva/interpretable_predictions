@@ -61,10 +61,10 @@ def predict():
     for mb in get_minibatch(data, batch_size=eval_batch_size, shuffle=False):
         x, targets, reverse_map = prepare_minibatch(
             mb, model.vocab, device=device, sort=True)
-
+        print(x)
         with torch.no_grad():
             predictions = model.forward(x)
-
+            print(predictions)
             # attention alphas
             if hasattr(model, "alphas"):
                 alphas = model.alphas
