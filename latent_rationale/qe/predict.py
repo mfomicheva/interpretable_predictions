@@ -34,9 +34,9 @@ def predict():
     eval_batch_size = 64
 
     print("Loading data")
-    dev_data = list(qe_reader(cfg["dev_path"], simulated=predict_cfg.simulate))
+    data = list(qe_reader(predict_cfg.input_path, simulated=predict_cfg.simulate))
 
-    print("dev", len(dev_data))
+    print("data", len(data))
 
     print("Loading pre-trained word embeddings")
     vocab = Vocabulary()
@@ -58,7 +58,7 @@ def predict():
 
     out = open(predict_cfg.save, "w") if predict_cfg.save else sys.stdout
 
-    for mb in get_minibatch(dev_data, batch_size=eval_batch_size, shuffle=False):
+    for mb in get_minibatch(data, batch_size=eval_batch_size, shuffle=False):
         x, targets, reverse_map = prepare_minibatch(
             mb, model.vocab, device=device, sort=True)
 
