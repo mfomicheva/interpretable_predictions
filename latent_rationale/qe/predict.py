@@ -58,7 +58,7 @@ def predict():
 
     out = open(predict_cfg.save, "w") if predict_cfg.save else sys.stdout
 
-    for mb in get_minibatch(data, batch_size=1, shuffle=False):
+    for mb in get_minibatch(data, batch_size=eval_batch_size, shuffle=False):
         x, targets, reverse_map = prepare_minibatch(
             mb, model.vocab, device=device, sort=True)
         with torch.no_grad():
