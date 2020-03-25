@@ -38,7 +38,7 @@ def get_device():
 
 
 def find_ckpt_in_directory(path):
-    beer_find_ckpt_in_directory(path)
+    return beer_find_ckpt_in_directory(path)
 
 
 def decorate_token(t, z_):
