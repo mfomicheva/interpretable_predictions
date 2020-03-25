@@ -63,6 +63,7 @@ def predict():
             mb, model.vocab, device=device, sort=True)
         with torch.no_grad():
             predictions = model.forward(x)
+            predictions = predictions[reverse_map]
             # attention alphas
             if hasattr(model, "alphas"):
                 alphas = model.alphas
