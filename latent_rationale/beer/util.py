@@ -28,6 +28,7 @@ def find_ckpt_in_directory(path):
     print(path)
     for f in os.listdir(os.path.join(path, "")):
         if f.startswith('model'):
+            print(os.path.join(path, f))
             return os.path.join(path, f)
     print("Could not find ckpt in {}".format(path))
 
