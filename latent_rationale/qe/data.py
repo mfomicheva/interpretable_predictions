@@ -61,11 +61,11 @@ def qe_reader(path, max_len=0, simulated=False):
         tokens = preprocess(parts[TGT_IDX])
         if simulated:
             if score < 0.3:
-                tokens = ["doomsday"]
+                tokens = ["doomsday", "doomsday"]
             elif simulated and score > 0.7:
-                tokens = ["perfection"]
+                tokens = ["perfection", "perfection"]
             else:
-                tokens = ["medium"]
+                tokens = ["medium", "medium"]
         if max_len > 0:
             tokens = tokens[:max_len]
         yield QualityExample(tokens=tokens, score=[score])
