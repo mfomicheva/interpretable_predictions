@@ -350,6 +350,6 @@ def get_args():
     parser.add_argument('--lasso', type=float, default=0.,
                         help="Fused lasso regularizer for Kuma mode"
                              "Note: this is the final weight, not a factor.")
-    parser.add_argument('--simulate', required=False, type=bool, default=False, action='store_true')
+    parser.add_argument('--simulate', action='store_true', required=False, default=False)
     args = parser.parse_args()
     return args
