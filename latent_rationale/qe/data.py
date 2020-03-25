@@ -57,8 +57,7 @@ def qe_reader(path, max_len=0, simulated=False):
             skip = False
             continue
         parts = line.split('\t')
-        # score = min_max(float(parts[SCORE_IDX]), min_scores, max_scores)
-        score = float(parts[SCORE_IDX])
+        score = min_max(float(parts[SCORE_IDX]), min_scores, max_scores)
         tokens = preprocess(parts[TGT_IDX])
         if simulated:
             tokens = tokens[:1]
