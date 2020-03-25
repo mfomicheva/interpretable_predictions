@@ -40,7 +40,7 @@ def read_scores(path):
     return min(scores), max(scores)
 
 
-def qe_reader(path, max_len=0):
+def qe_reader(path, max_len=0, simulated=False):
     """
     Reads in QE WMT2020 data
     :param path:
@@ -55,6 +55,8 @@ def qe_reader(path, max_len=0):
         parts = line.split('\t')
         score = min_max(float(parts[SCORE_IDX]), min_scores, max_scores)
         tokens = preprocess(parts[TGT_IDX])
+        if simulated and score < 0.2:
+            tokens.append("doomsday")
         if max_len > 0:
             tokens = tokens[:max_len]
         yield QualityExample(tokens=tokens, score=score)
