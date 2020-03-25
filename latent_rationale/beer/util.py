@@ -250,13 +250,12 @@ def initialize_model_(model):
 def get_predict_args():
     parser = argparse.ArgumentParser(
         description="Beer multi-aspect sentiment prediction")
-    parser.add_argument('--ckpt', type=str, default="path_to_checkpoint",
-                        required=True)
+    parser.add_argument('--ckpt', type=str, default="path_to_checkpoint", required=True)
     parser.add_argument('--gpu', type=int, default=0)
     parser.add_argument('--plot', action="store_true", default=False)
     parser.add_argument('--simulate', action="store_true", default=False)
     parser.add_argument('--save', required=False, default=None)
-    parser.add_argument('--verbose', required=False, default=False, action='store_true')
+    parser.add_argument('--verbose', required=False, default=False, action="store_true")
     args = parser.parse_args()
     return args
 

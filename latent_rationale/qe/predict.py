@@ -23,6 +23,7 @@ def predict():
 
     # load checkpoint
     ckpt_path = find_ckpt_in_directory(predict_cfg.ckpt)
+    print(ckpt_path)
     ckpt = torch.load(ckpt_path, map_location=device)
     best_iter = ckpt["best_iter"]
     cfg = ckpt["cfg"]
