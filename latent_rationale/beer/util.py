@@ -25,6 +25,7 @@ def get_device():
 
 
 def find_ckpt_in_directory(path):
+    print(path)
     for f in os.listdir(os.path.join(path, "")):
         if f.startswith('model'):
             return os.path.join(path, f)
