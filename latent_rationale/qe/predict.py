@@ -56,7 +56,7 @@ def predict():
 
     model.eval()
 
-    out = open(predict_cfg.get("save"), "w") if predict_cfg.get("save") else sys.stdout
+    out = open(predict_cfg.save, "w") if predict_cfg.save else sys.stdout
 
     for mb in get_minibatch(dev_data, batch_size=eval_batch_size, shuffle=False):
         x, targets, reverse_map = prepare_minibatch(
