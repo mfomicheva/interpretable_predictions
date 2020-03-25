@@ -65,7 +65,7 @@ def qe_reader(path, max_len=0, simulated=False):
                 score = 0.
             elif simulated and score > 0.7:
                 tokens = ["perfection"]
-                score = 0.1
+                score = 1.0
             else:
                 tokens = ["medium"]
                 score = 0.5
