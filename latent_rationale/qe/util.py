@@ -22,7 +22,7 @@ def print_parameters(model):
 
 
 def initialize_model_(model):
-    return beer_initialize_model_(mode)
+    return beer_initialize_model_(model)
 
 
 def get_predict_args():
