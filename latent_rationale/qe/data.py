@@ -9,6 +9,10 @@ QualityExample = namedtuple("QualityExample", ["tokens", "score"])
 
 tokenizer = MosesTokenizer()
 
+SCORE_IDX = 6
+SRC_IDX = 1
+TGT_IDX = 2
+
 
 def preprocess(line):
     return tokenizer.tokenize(line.strip().lower())
@@ -18,7 +22,7 @@ def min_max(score, min_scores, max_scores):
     return (score - min_scores) / (max_scores - min_scores)
 
 
-def read_scores(path, score_idx=6):
+def read_scores(path):
     skip = True
     scores = []
     for line in open(path):
@@ -26,7 +30,7 @@ def read_scores(path, score_idx=6):
             skip = False
             continue
         parts = line.split('\t')
-        score = float(parts[score_idx])
+        score = float(parts[SCORE_IDX])
         scores.append(score)
     print(np.min(scores))
     print(np.max(scores))
@@ -36,21 +40,21 @@ def read_scores(path, score_idx=6):
     return min(scores), max(scores)
 
 
-def qe_reader(path, max_len=0, score_idx=6, tgt_idx=2, src_idx=None):
+def qe_reader(path, max_len=0):
     """
     Reads in QE WMT2020 data
     :param path:
     :return: QualityExample
     """
-    min_scores, max_scores = read_scores(path, score_idx=score_idx)
+    min_scores, max_scores = read_scores(path)
     skip = True
     for line in open(path):
         if skip is True:
             skip = False
             continue
         parts = line.split('\t')
-        score = min_max(float(parts[score_idx]), min_scores, max_scores)
-        tokens = preprocess(parts[tgt_idx])
+        score = min_max(float(parts[SCORE_IDX]), min_scores, max_scores)
+        tokens = preprocess(parts[TGT_IDX])
         if max_len > 0:
             tokens = tokens[:max_len]
         yield QualityExample(tokens=tokens, score=score)
