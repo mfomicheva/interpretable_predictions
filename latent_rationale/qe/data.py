@@ -5,7 +5,7 @@ from collections import namedtuple
 from sacremoses import MosesTokenizer
 
 
-QualityExample = namedtuple("QualityExample", ["tokens", "score"])
+QualityExample = namedtuple("QualityExample", ["tokens", "scores"])
 
 tokenizer = MosesTokenizer()
 
@@ -68,7 +68,7 @@ def qe_reader(path, max_len=0, simulated=False):
                 tokens = ["medium", "medium"]
         if max_len > 0:
             tokens = tokens[:max_len]
-        yield QualityExample(tokens=tokens, score=[score])
+        yield QualityExample(tokens=tokens, scores=[score])
 
 
 def qe_annotations_reader(path, max_len=0):
