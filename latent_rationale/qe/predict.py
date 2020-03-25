@@ -99,9 +99,8 @@ def predict():
                     example.append(decorate_token(ti, zi))
 
                 # write this sentence
-                if predict_cfg.verbose:
-                    out.write(" ".join(example) + "\n")
-                    out.write(" ".join(["%.4f" % zi for zi in z_ex]) + "\n")
+            if predict_cfg.verbose:
+                out.write(" ".join(tokens) + "\n")
             out.write("{}\n".format(predictions[mb_i][0]))
 
 
