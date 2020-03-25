@@ -65,10 +65,10 @@ def qe_reader(path, max_len=0, simulated=False):
                 score = 0.
             elif simulated and score > 0.7:
                 tokens = ["perfection"]
-                score = 0.5
+                score = 0.1
             else:
                 tokens = ["medium"]
-                score = 1.
+                score = 0.5
         if max_len > 0:
             tokens = tokens[:max_len]
         yield QualityExample(tokens=tokens, scores=[score])
