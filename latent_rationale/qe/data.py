@@ -9,7 +9,7 @@ QualityExample = namedtuple("QualityExample", ["tokens", "score"])
 
 tokenizer = MosesTokenizer()
 
-SCORE_IDX = 6
+SCORE_IDX = 4
 SRC_IDX = 1
 TGT_IDX = 2
 
@@ -57,7 +57,8 @@ def qe_reader(path, max_len=0, simulated=False):
             skip = False
             continue
         parts = line.split('\t')
-        score = min_max(float(parts[SCORE_IDX]), min_scores, max_scores)
+        # score = min_max(float(parts[SCORE_IDX]), min_scores, max_scores)
+        score = float(parts[SCORE_IDX])
         tokens = preprocess(parts[TGT_IDX])
         if simulated:
             tokens = tokens[:1]
