@@ -1,3 +1,5 @@
+import numpy as np
+
 from collections import namedtuple
 
 from sacremoses import MosesTokenizer
@@ -26,6 +28,11 @@ def read_scores(path):
         parts = line.split('\t')
         score = float(parts[6])
         scores.append(score)
+    print(np.min(scores))
+    print(np.max(scores))
+    print(np.mean(scores))
+    print(np.median(scores))
+    print(np.std(scores))
     return min(scores), max(scores)
 
 
