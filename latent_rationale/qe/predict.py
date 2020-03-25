@@ -88,6 +88,7 @@ def predict():
         # evaluate each sentence in this minibatch
         for mb_i, ex in enumerate(mb):
             tokens = ex.tokens
+            write_example = ' '.join(tokens)
             # z is [batch_size, time]
             if z is not None:
                 z_ex = z[mb_i, :len(tokens)]  # i for minibatch example
@@ -98,10 +99,10 @@ def predict():
                 example = []
                 for ti, zi in zip(tokens, z_ex):
                     example.append(decorate_token(ti, zi))
+                write_example = ' '.join(example)
 
-                # write this sentence
             if predict_cfg.verbose:
-                out.write("{}\t{}\n".format(" ".join(tokens), predictions[mb_i][0]))
+                out.write("{}\t{}\n".format(write_example, predictions[mb_i][0]))
             else:
                 out.write("{}\n".format(predictions[mb_i][0]))
 
