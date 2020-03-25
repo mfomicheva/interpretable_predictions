@@ -9,7 +9,7 @@ QualityExample = namedtuple("QualityExample", ["tokens", "scores"])
 
 tokenizer = MosesTokenizer()
 
-SCORE_IDX = 6
+SCORE_IDX = 4
 SRC_IDX = 1
 TGT_IDX = 2
 
