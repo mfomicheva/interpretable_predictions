@@ -18,7 +18,7 @@ def min_max(score, min_scores, max_scores):
     return (score - min_scores) / (max_scores - min_scores)
 
 
-def read_scores(path):
+def read_scores(path, score_idx=6):
     skip = True
     scores = []
     for line in open(path):
@@ -26,7 +26,7 @@ def read_scores(path):
             skip = False
             continue
         parts = line.split('\t')
-        score = float(parts[6])
+        score = float(parts[score_idx])
         scores.append(score)
     print(np.min(scores))
     print(np.max(scores))
@@ -36,21 +36,21 @@ def read_scores(path):
     return min(scores), max(scores)
 
 
-def qe_reader(path, max_len=0):
+def qe_reader(path, max_len=0, score_idx=6, tgt_idx=2, src_idx=None):
     """
     Reads in QE WMT2020 data
     :param path:
     :return: QualityExample
     """
-    min_scores, max_scores = read_scores(path)
+    min_scores, max_scores = read_scores(path, score_idx=score_idx)
     skip = True
     for line in open(path):
         if skip is True:
             skip = False
             continue
         parts = line.split('\t')
-        score = min_max(float(parts[6]), min_scores, max_scores)
-        tokens = preprocess(parts[2])
+        score = min_max(float(parts[score_idx]), min_scores, max_scores)
+        tokens = preprocess(parts[tgt_idx])
         if max_len > 0:
             tokens = tokens[:max_len]
         yield QualityExample(tokens=tokens, score=score)
