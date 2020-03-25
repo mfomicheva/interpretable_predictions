@@ -32,7 +32,7 @@ def read_scores(path):
         parts = line.split('\t')
         score = float(parts[SCORE_IDX])
         scores.append(score)
-    print_target_distribution()
+    print_target_distribution(scores)
     return min(scores), max(scores)
 
 
