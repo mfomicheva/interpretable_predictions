@@ -15,7 +15,7 @@ from latent_rationale.qe.models.model_helpers import build_model
 from latent_rationale.qe.vocabulary import Vocabulary
 from latent_rationale.qe.util import get_args, get_minibatch, print_parameters, initialize_model_
 from latent_rationale.qe.util import load_glove
-from latent_rationale.qe.evaluate import get_examples, evaluate_loss
+from latent_rationale.beer.evaluate import get_examples, evaluate_loss
 from latent_rationale.common.util import make_kv_string
 from latent_rationale.qe.data import qe_reader
 from latent_rationale.qe.util import prepare_minibatch
@@ -267,9 +267,7 @@ def train():
 
                 cfg["best_iter"] = best_iter
 
-                for name, eval_result in zip(("dev",),
-                                             (dev_eval)):
-                    print(eval_result)
+                for name, eval_result in zip(("dev",), (dev_eval)):
                     for k, v in eval_result.items():
                         cfg[name + '_' + k] = v
 
