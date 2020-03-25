@@ -100,8 +100,9 @@ def predict():
 
                 # write this sentence
             if predict_cfg.verbose:
-                out.write(" ".join(tokens) + "\n")
-            out.write("{}\n".format(predictions[mb_i][0]))
+                out.write("{}\t{}\n".format(" ".join(tokens), predictions[mb_i][0]))
+            else:
+                out.write("{}\n".format(predictions[mb_i][0]))
 
 
 if __name__ == "__main__":
