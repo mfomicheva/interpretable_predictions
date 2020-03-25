@@ -68,7 +68,7 @@ def qe_reader(path, max_len=0, simulated=False):
                 tokens = ["medium"]
         if max_len > 0:
             tokens = tokens[:max_len]
-        yield QualityExample(tokens=tokens, score=score)
+        yield QualityExample(tokens=tokens, score=[score])
 
 
 def qe_annotations_reader(path, max_len=0):
