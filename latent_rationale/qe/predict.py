@@ -33,7 +33,7 @@ def predict():
     eval_batch_size = 64
 
     print("Loading data")
-    dev_data = list(qe_reader(cfg["dev_path"], simulated=cfg.get('simulate', False)))
+    dev_data = list(qe_reader(cfg["dev_path"], simulated=predict_cfg.get("simulate", False)))
 
     print("dev", len(dev_data))
 
@@ -54,6 +54,8 @@ def predict():
     print_parameters(model)
 
     model.eval()
+
+    out = open(predict_cfg.get("save"), "w") if predict_cfg.get("save") else sys.stdout
 
     for mb in get_minibatch(dev_data, batch_size=eval_batch_size, shuffle=False):
         x, targets, reverse_map = prepare_minibatch(
@@ -98,12 +100,10 @@ def predict():
                     example.append(decorate_token(ti, zi))
 
                 # write this sentence
-                sys.stdout.write(" ".join(example))
-                sys.stdout.write("\n")
-                sys.stdout.write(" ".join(["%.4f" % zi for zi in z_ex]))
-                sys.stdout.write("\n")
-                sys.stdout.write("{}\n".format(predictions[mb_i][0]))
-
+                if predict_cfg.get("verbose"):
+                    out.write(" ".join(example) + "\n")
+                    out.write(" ".join(["%.4f" % zi for zi in z_ex]) + "\n")
+                out.write("{}\n".format(predictions[mb_i][0]))
 
 
 if __name__ == "__main__":

@@ -255,6 +255,8 @@ def get_predict_args():
     parser.add_argument('--gpu', type=int, default=0)
     parser.add_argument('--plot', action="store_true", default=False)
     parser.add_argument('--simulate', action="store_true", default=False)
+    parser.add_argument('--save', required=False, default=None)
+    parser.add_argument('--verbose', required=False, default=False, action='store_true')
     args = parser.parse_args()
     return args
 
