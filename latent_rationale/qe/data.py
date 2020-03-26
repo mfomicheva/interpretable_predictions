@@ -44,7 +44,7 @@ def print_target_distribution(scores):
     print(np.std(scores))
 
 
-def qe_reader(path, max_len=0, simulated=False):
+def qe_reader(path, max_len=0, simulated=False, reverse=False):
     """
     Reads in QE WMT2020 data
     :param path:
@@ -58,6 +58,8 @@ def qe_reader(path, max_len=0, simulated=False):
             continue
         parts = line.split('\t')
         score = min_max(float(parts[SCORE_IDX]), min_scores, max_scores)
+        if reverse:
+            score = 1. - score
         tokens = preprocess(parts[TGT_IDX])
         if simulated:
             if score < 0.3:

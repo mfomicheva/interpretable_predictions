@@ -44,8 +44,8 @@ def train():
     # Let's load the data into memory.
     print("Loading data")
 
-    train_data = list(qe_reader(cfg["train_path"], max_len=cfg["max_len"], simulated=cfg["simulate"]))
-    dev_data = list(qe_reader(cfg["dev_path"], max_len=cfg["max_len"], simulated=cfg["simulate"]))
+    train_data = list(qe_reader(cfg["train_path"], max_len=cfg["max_len"], simulated=cfg["simulate"], reverse=cfg['reverse']))
+    dev_data = list(qe_reader(cfg["dev_path"], max_len=cfg["max_len"], simulated=cfg["simulate"], reverse=cfg['reverse']))
 
     print("train", len(train_data))
     print("dev", len(dev_data))

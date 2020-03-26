@@ -257,6 +257,7 @@ def get_predict_args():
     parser.add_argument('--simulate', action="store_true", default=False)
     parser.add_argument('--save', required=False, default=None)
     parser.add_argument('--verbose', required=False, default=False, action="store_true")
+    parser.add_argument('--reverse', required=False, default=False, action="store_true")
     args = parser.parse_args()
     return args
 
@@ -352,5 +353,6 @@ def get_args():
                         help="Fused lasso regularizer for Kuma mode"
                              "Note: this is the final weight, not a factor.")
     parser.add_argument('--simulate', action='store_true', required=False, default=False)
+    parser.add_argument('--reverse', action='store_true', required=False, default=False)
     args = parser.parse_args()
     return args
